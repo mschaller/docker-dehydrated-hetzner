@@ -17,6 +17,12 @@ vim /opt/letsencrypt/domains.txt
 
 ## Run the container
 
+run once to register account
+```
+docker run --rm -it -v /opt/letsencrypt:/etc/dehydrated letsencrypt
+```
+
+create / update certificats
 ```
 docker run --rm -it \
        -e "HETZNER_USERNAME=xxx" \

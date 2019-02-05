@@ -1,8 +1,8 @@
-FROM alpine
+FROM alpine:3.7
 MAINTAINER Michael Schaller
 
 # base
-RUN apk add --no-cache bash openssl curl python3 && \
+RUN apk add --no-cache bash openssl openssl-dev curl python3 python3-dev musl-dev libffi-dev make gcc && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools && \
@@ -20,5 +20,4 @@ RUN git clone https://github.com/lukas2511/dehydrated.git /opt/dehydrated \
 
 RUN apk del .build-dependencies
 
-ENTRYPOINT /opt/dehydrated/dehydrated
-CMD -c
+ENTRYPOINT ["/opt/dehydrated/dehydrated"]
