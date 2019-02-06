@@ -19,14 +19,15 @@ vim /opt/letsencrypt/domains.txt
 
 run once to register account
 ```
-docker run --rm -it -v /opt/letsencrypt:/etc/dehydrated letsencrypt
+docker run --rm -it -v /opt/letsencrypt:/etc/dehydrated letsencrypt --register --accept-terms
 ```
 
 create / update certificats
 ```
 docker run --rm -it \
-       -e "HETZNER_USERNAME=xxx" \
-       -e "HETZNER_PASSWORD=xxx" \
+       -e "HETZNER_AUTH_USERNAME=xxx" \
+       -e "HETZNER_AUTH_PASSWORD=xxx" \
        -v /opt/letsencrypt:/etc/dehydrated \
+       --user ($id -u):$(id -g) \
        letsencrypt -c
 ```
